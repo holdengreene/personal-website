@@ -1,7 +1,7 @@
 @use "./variables";
 
-body {
-    background-color: green;
+.colored-background {
+    @include variables.css-variable('background-color', 'splash-background');
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,9 +9,10 @@ body {
 
 .main-grid {
     width: 100%;
-    background-color: #fff;
+    @include variables.css-variable('background-color', 'primary-background');
     text-align: center;
     margin: variables.rem(20px);
+    border-radius: variables.rem(3px);
 }
 
 .main-grid__text {
@@ -21,8 +22,17 @@ body {
     height: 100%;
 }
 
-.main-grid__titles h1 {
-    margin: 0;
+.main-grid__titles {
+    font-family: variables.$header-font;
+
+    h1 {
+        margin: 0;
+        font-weight: bold;
+    }
+
+    h2 {
+        font-weight: normal;
+    }
 }
 
 .main-grid__link-section {

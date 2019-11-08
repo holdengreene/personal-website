@@ -1,0 +1,8 @@
+@use "./variables";
+
+// Still use sass variables here to ensure consistency
+:root {
+    --font-color: #{variables.$font-color};
+    --primary-background: #{variables.$primary-background};
+    --splash-background: #{variables.$splash-background};
+}
