@@ -2,30 +2,38 @@
 
 body {
     background-color: green;
-    min-height: 93vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    padding: variables.rem(20px);
 }
 
 .main-grid {
     width: 100%;
     background-color: #fff;
     text-align: center;
+    margin: variables.rem(20px);
 }
 
 .main-grid__text {
-    --main-grid-columns: repeat(2, 1fr);
-    display: grid;
-    grid-template-columns: var(--main-grid-columns);
-    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     height: 100%;
 }
 
-.main-grid__titles {
-    grid-column: 1 / -1;
+.main-grid__titles h1 {
+    margin: 0;
+}
 
-    h1 {
-        margin: 0;
-    }
+.main-grid__link-section {
+    display: flex;
+    justify-content: center;
+}
+
+.main-grid__link {
+    display: block;
+}
+
+.main-grid__link--github {
+    margin-right: variables.rem(20px);
 }
