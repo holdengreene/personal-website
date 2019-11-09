@@ -1,5 +1,6 @@
 @use "./variables";
 @use "../animation/movement";
+@use "sass:color";
 
 .colored-background {
     @include variables.css-variable('background-color', 'splash-background');
@@ -14,6 +15,7 @@
     text-align: center;
     margin: variables.rem(20px);
     border-radius: variables.rem(3px);
+    box-shadow: variables.$slight-shadow;
 }
 
 .main-grid__text {
@@ -50,13 +52,25 @@
 
 .main-grid__link {
     display: block;
-    background-color: variables.$splash-background;
+    background-color: transparent;
+    border: variables.rem(3px) solid variables.$splash-background;
     padding: variables.rem(10px);
     border-radius: variables.rem(3px);
-    color: #fff;
+    @include variables.css-variable('color', 'font-color');
     font-size: variables.rem(20px);
     text-decoration: none;
-    box-shadow: variables.$slight-shadow;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+
+    &:hover {
+        border-color: color.scale(
+            variables.$splash-background,
+            $lightness: -20%
+        );
+        background-color: color.scale(
+            variables.$splash-background,
+            $lightness: 80%
+        );
+    }
 }
 
 .main-grid__link--github {
