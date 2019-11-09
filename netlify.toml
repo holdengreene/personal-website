@@ -1,0 +1,46 @@
+# Settings in the [build] context are global and are applied to all contexts
+# unless otherwise overridden by more specific contexts.
+[build]
+
+# Redirects and headers are GLOBAL for all builds – they do not get scoped to
+# contexts no matter where you define them in the file.
+# For context-specific rules, use _headers or _redirects files, which are
+# PER-DEPLOY.
+
+# A basic redirect rule
+[[redirects]]
+  from = "/*"
+  to = "/blog/:splat"
+
+# A redirect rule with all the supported properties
+[[redirects]]
+  from = "https://romantic-turing-d2059f.netlify.com/*"
+  to = "https://holdengreene.com/:splat"
+
+  # The default HTTP status code is 301, but you can define a different one.
+  status = 301
+
+  # By default, redirects won't be applied if there's a file with the same
+  # path as the one defined in the `from` property. Setting `force` to `true`
+  # will make the redirect rule take precedence over any existing files.
+  force = true
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/*"
+
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+
+[[headers]]
+  for = "*.js"
+
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "*.css"
+
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
