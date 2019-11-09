@@ -66,10 +66,7 @@
             variables.$splash-background,
             $lightness: -20%
         );
-        background-color: color.scale(
-            variables.$splash-background,
-            $lightness: 80%
-        );
+        @include variables.css-variable('background-color', 'green-hover');
     }
 }
 
