@@ -33,14 +33,25 @@
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"
 
+# Caching headers
 [[headers]]
   for = "*.js"
 
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=15811200"
 
 [[headers]]
   for = "*.css"
 
   [headers.values]
-    Cache-Control = "public, max-age=604800"
+    Cache-Control = "public, max-age=15811200"
+
+# Hsts
+[[headers]]
+  for = "/*"
+
+  [headers.values]
+    Strict-Transport-Security = '''
+    max-age=63072000
+    includeSubDomains,
+    preload'''
