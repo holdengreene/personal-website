@@ -1,4 +1,4 @@
 // Parcel hot module reload
-if ((module as any).hot) {
+if (process.env.NODE_ENV === 'development' && (module as any).hot) {
     (module as any).hot.accept();
 }
