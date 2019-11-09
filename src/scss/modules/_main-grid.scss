@@ -74,6 +74,16 @@
 //     margin-right: variables.rem(20px);
 // }
 
+// Let's be considerate
+@media (prefers-reduced-motion: reduce) {
+    .main-grid__titles h1,
+    .main-grid__titles h2,
+    .main-grid__link-section {
+        opacity: 1;
+        animation: none;
+    }
+}
+
 @media (max-width: 1023px) {
     .main-grid {
         padding: variables.rem(15px);
