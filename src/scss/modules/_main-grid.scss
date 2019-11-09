@@ -1,4 +1,5 @@
 @use "./variables";
+@use "../animation/movement";
 
 .colored-background {
     @include variables.css-variable('background-color', 'splash-background');
@@ -26,24 +27,48 @@
     font-family: variables.$header-font;
 
     h1 {
+        opacity: 0;
         margin: 0;
         font-weight: bold;
+        font-size: variables.rem(42px);
+        animation: 1s fadeUp 0.25s forwards ease;
     }
 
     h2 {
+        opacity: 0;
         font-weight: normal;
+        animation: 1s fadeUp 0.5s forwards ease;
     }
 }
 
 .main-grid__link-section {
     display: flex;
     justify-content: center;
+    opacity: 0;
+    animation: 1s fadeUp 0.75s forwards ease;
 }
 
 .main-grid__link {
     display: block;
+    background-color: variables.$splash-background;
+    padding: variables.rem(10px);
+    border-radius: variables.rem(3px);
+    color: #fff;
+    font-size: variables.rem(20px);
+    text-decoration: none;
+    box-shadow: variables.$slight-shadow;
 }
 
 .main-grid__link--github {
     margin-right: variables.rem(20px);
+}
+
+@media (max-width: 1023px) {
+    .main-grid {
+        padding: variables.rem(15px);
+    }
+
+    .main-grid__titles h1 {
+        font-size: variables.rem(38px);
+    }
 }
