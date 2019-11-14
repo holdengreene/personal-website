@@ -1,0 +1,74 @@
+@use "./variables";
+
+.theme-toggle {
+    position: absolute;
+    top: variables.rem(20px);
+    right: variables.rem(50px);
+}
+
+.theme-toggle__label {
+    display: inline-block;
+    height: variables.rem(34px);
+    position: relative;
+    width: variables.rem(60px);
+
+    &::before {
+        content: url('../icons/sun.svg');
+        position: absolute;
+        left: variables.rem(-40px);
+        width: variables.rem(30px);
+        height: variables.rem(30px);
+    }
+
+    &::after {
+        content: url('../icons/moon.svg');
+        position: absolute;
+        right: variables.rem(-40px);
+        width: variables.rem(30px);
+        height: variables.rem(30px);
+    }
+}
+
+// Hide the input, but not from screen readers
+.theme-toggle__checkbox {
+    position: absolute;
+    top: auto;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    width: variables.rem(1px);
+    height: variables.rem(1px);
+    white-space: nowrap;
+}
+
+.theme-toggle__slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.4s;
+    border-radius: variables.rem(3px);
+
+    &::before {
+        background-color: #fff;
+        bottom: variables.rem(4px);
+        content: '';
+        height: variables.rem(26px);
+        left: variables.rem(4px);
+        position: absolute;
+        transition: 0.4s;
+        width: variables.rem(26px);
+        border-radius: variables.rem(3px);
+    }
+}
+
+.theme-toggle__checkbox:checked + .theme-toggle__slider {
+    background-color: var(--green-hover);
+
+    &::before {
+        transform: translateX(#{variables.rem(26px)});
+    }
+}

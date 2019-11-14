@@ -9,15 +9,47 @@ export function themeToggle() {
         return;
     }
 
-    const button = document.querySelector('.theme-toggle') as HTMLButtonElement;
-    const root = document.querySelector(':root') as HTMLElement;
+    const theme = localStorage.getItem('theme');
+    const root = document.querySelector(':root');
+    const toggle = document.querySelector(
+        '.theme-toggle__checkbox'
+    ) as HTMLInputElement | null;
 
-    button.addEventListener('click', () => {
-        root.classList.add('light-theme');
-        localStorage.setItem('theme', 'light-theme');
+    if (!root || !toggle) {
+        return;
+    }
+
+    toggle.addEventListener('change', () => {
+        if (toggle.checked) {
+            root.classList.remove('light-theme');
+            root.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark-theme');
+        } else {
+            root.classList.remove('dark-theme');
+            root.classList.add('light-theme');
+            localStorage.setItem('theme', 'light-theme');
+        }
     });
 
-    const theme = localStorage.getItem('theme');
+    // See if theme is stored in localStorage. This takes precedence.
+    if (theme) {
+        root.classList.add(theme);
 
-    root.classList.add(theme);
+        if (theme === 'dark-theme') {
+            toggle.checked = true;
+        }
+
+        return;
+    }
+
+    // See if the browser supports prefers color scheme
+    if (window.matchMedia('(prefers-color-scheme: dark').media === 'not all') {
+        return;
+    }
+
+    // If browser supports it set the toggle and store in localStorage
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        toggle.checked = true;
+        return localStorage.setItem('theme', 'dark-theme');
+    }
 }

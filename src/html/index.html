@@ -21,7 +21,11 @@
             sizes="16x16"
             href="../icons/favicon-16x16.png"
         />
-        <link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="../icons/apple-touch-icon.png"
+        />
 
         <title>Holden Greene | Full Stack Developer</title>
 
@@ -46,8 +50,13 @@
     <body>
         <div class="colored-background">
             <div class="main-grid">
+                <div class="theme-toggle">
+                    <label class="theme-toggle__label" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle" class="theme-toggle__checkbox" aria-label="Toggle between dark and light theme" />
+                        <div class="theme-toggle__slider"></div>
+                    </label>
+                </div>
 
-                <button class="theme-toggle">Theme Toggle</button>
                 <main class="main-grid__text">
                     <div class="main-grid__titles">
                         <h1>Holden Greene</h1>

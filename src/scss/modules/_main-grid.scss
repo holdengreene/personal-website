@@ -10,6 +10,7 @@
 }
 
 .main-grid {
+    position: relative;
     width: 100%;
     @include variables.css-variable('background-color', 'primary-background');
     text-align: center;
