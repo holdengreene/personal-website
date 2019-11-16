@@ -1,32 +1,28 @@
 @use "./variables";
+@use "../animation/movement";
 
 .theme-toggle {
     position: absolute;
     top: variables.rem(20px);
     right: variables.rem(50px);
+    opacity: 0;
+    animation: 1s fadeUp 0.75s forwards ease;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        opacity: 1;
+    }
 }
 
-.theme-toggle__label {
-    display: inline-block;
-    height: variables.rem(34px);
-    position: relative;
-    width: variables.rem(60px);
+.moon-svg {
+    width: variables.rem(30px);
+    cursor: pointer;
+}
 
-    &::before {
-        content: url('../icons/sun.svg');
-        position: absolute;
-        left: variables.rem(-40px);
-        width: variables.rem(30px);
-        height: variables.rem(30px);
-    }
-
-    &::after {
-        content: url('../icons/moon.svg');
-        position: absolute;
-        right: variables.rem(-40px);
-        width: variables.rem(30px);
-        height: variables.rem(30px);
-    }
+.moon-svg__path {
+    fill: #fff;
+    stroke: variables.$font-color;
+    transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
 // Hide the input, but not from screen readers
@@ -65,10 +61,7 @@
     }
 }
 
-.theme-toggle__checkbox:checked + .theme-toggle__slider {
-    background-color: var(--green-hover);
-
-    &::before {
-        transform: translateX(#{variables.rem(26px)});
-    }
+.theme-toggle__checkbox:checked + .theme-toggle__label .moon-svg__path {
+    fill: variables.$splash-background;
+    stroke: variables.$darker-splash;
 }
