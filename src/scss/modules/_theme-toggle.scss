@@ -2,6 +2,7 @@
 @use "../animation/movement";
 
 .theme-toggle {
+    display: none;
     position: absolute;
     top: variables.rem(20px);
     right: variables.rem(50px);
@@ -12,6 +13,10 @@
         animation: none;
         opacity: 1;
     }
+}
+
+.theme-toggle--javascript {
+    display: block;
 }
 
 .moon-svg {

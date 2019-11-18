@@ -1,4 +1,14 @@
 /**
+ * Save the theme names as an enum
+ * Mostly because I keep changing them and
+ * I just want to change one place
+ */
+enum Theme {
+    Dark = 'dark',
+    Light = 'light'
+}
+
+/**
  * Toggle the theme based on a toggle switch
  *
  * Store the value in localStorage for recall on return visits
@@ -10,33 +20,33 @@ export function themeToggle() {
     }
 
     const theme = localStorage.getItem('theme');
-    const root = document.querySelector(':root');
-    const toggle = document.querySelector(
+    const root = document.querySelector(':root') as HTMLElement | null;
+    const toggleDiv = document.querySelector('.theme-toggle');
+    const toggleCheckbox = document.querySelector(
         '.theme-toggle__checkbox'
     ) as HTMLInputElement | null;
 
-    if (!root || !toggle) {
+    if (!root || !toggleCheckbox) {
         return;
     }
 
-    toggle.addEventListener('change', () => {
-        if (toggle.checked) {
-            root.classList.remove('light-theme');
-            root.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark-theme');
+    // This browser supports css custom properties, so the switcher should be shown
+    toggleDiv!.classList.add('theme-toggle--javascript');
+
+    toggleCheckbox.addEventListener('change', () => {
+        if (toggleCheckbox.checked) {
+            changeTheme(root, Theme.Dark);
         } else {
-            root.classList.remove('dark-theme');
-            root.classList.add('light-theme');
-            localStorage.setItem('theme', 'light-theme');
+            changeTheme(root, Theme.Light);
         }
     });
 
     // See if theme is stored in localStorage. This takes precedence.
     if (theme) {
-        root.classList.add(theme);
+        root.dataset.theme = theme;
 
-        if (theme === 'dark-theme') {
-            toggle.checked = true;
+        if (theme === Theme.Dark) {
+            toggleCheckbox.checked = true;
         }
 
         return;
@@ -49,7 +59,17 @@ export function themeToggle() {
 
     // If browser supports it set the toggle and store in localStorage
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        toggle.checked = true;
+        toggleCheckbox.checked = true;
         return localStorage.setItem('theme', 'dark-theme');
     }
+}
+
+/**
+ * Take in a theme and toggle the theme on root
+ *
+ * Add the theme to localStorage
+ */
+function changeTheme(root: HTMLElement, theme: string) {
+    root.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
 }
