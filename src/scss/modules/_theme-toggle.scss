@@ -42,30 +42,6 @@
     white-space: nowrap;
 }
 
-.theme-toggle__slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: 0.4s;
-    border-radius: variables.rem(3px);
-
-    &::before {
-        background-color: #fff;
-        bottom: variables.rem(4px);
-        content: '';
-        height: variables.rem(26px);
-        left: variables.rem(4px);
-        position: absolute;
-        transition: 0.4s;
-        width: variables.rem(26px);
-        border-radius: variables.rem(3px);
-    }
-}
-
 .theme-toggle__checkbox:checked + .theme-toggle__label .moon-svg__path {
     fill: variables.$splash-background;
     stroke: none;
