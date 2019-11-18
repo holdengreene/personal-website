@@ -21,17 +21,19 @@ export function themeToggle() {
 
     const theme = localStorage.getItem('theme');
     const root = document.querySelector(':root') as HTMLElement | null;
-    const toggleDiv = document.querySelector('.theme-toggle');
+    const toggleDiv = document.querySelector(
+        '.theme-toggle'
+    ) as HTMLElement | null;
     const toggleCheckbox = document.querySelector(
         '.theme-toggle__checkbox'
     ) as HTMLInputElement | null;
 
-    if (!root || !toggleCheckbox) {
+    if (!root || !toggleCheckbox || !toggleDiv) {
         return;
     }
 
     // This browser supports css custom properties, so the switcher should be shown
-    toggleDiv!.classList.add('theme-toggle--javascript');
+    toggleDiv.style.display = 'block';
 
     toggleCheckbox.addEventListener('change', () => {
         if (toggleCheckbox.checked) {
