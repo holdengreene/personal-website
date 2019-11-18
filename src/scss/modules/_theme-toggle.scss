@@ -68,5 +68,5 @@
 
 .theme-toggle__checkbox:checked + .theme-toggle__label .moon-svg__path {
     fill: variables.$splash-background;
-    stroke: variables.$darker-splash;
+    stroke: none;
 }
