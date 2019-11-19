@@ -14,11 +14,6 @@ enum Theme {
  * Store the value in localStorage for recall on return visits
  */
 export function themeToggle() {
-    // This browser doesn't support custom properties
-    if (!window.CSS && !CSS.supports('color', 'var(--font-color')) {
-        return;
-    }
-
     const theme = localStorage.getItem('theme');
     const root = document.querySelector(':root') as HTMLElement | null;
     const toggleDiv = document.querySelector(
