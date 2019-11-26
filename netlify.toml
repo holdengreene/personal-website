@@ -7,31 +7,6 @@
 # For context-specific rules, use _headers or _redirects files, which are
 # PER-DEPLOY.
 
-# A basic redirect rule
-[[redirects]]
-  from = "/*"
-  to = "/blog/:splat"
-
-# A redirect rule with all the supported properties
-[[redirects]]
-  from = "https://romantic-turing-d2059f.netlify.com/*"
-  to = "https://holdengreene.dev/:splat"
-
-  # The default HTTP status code is 301, but you can define a different one.
-  status = 301
-
-  # By default, redirects won't be applied if there's a file with the same
-  # path as the one defined in the `from` property. Setting `force` to `true`
-  # will make the redirect rule take precedence over any existing files.
-  force = true
-
-[[redirects]]
-  from = "https://holdengreene.com/*"
-  to = "https://holdengreene.dev/:splat"
-
-  status = 301
-  force = true
-
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
