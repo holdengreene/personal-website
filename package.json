@@ -6,7 +6,7 @@
     "author": "Holden Greene <hgreene@cmnhospitals.org>",
     "license": "MIT",
     "scripts": {
-        "build": "rm -r -f dist && parcel build src/html/index.html && mv _redirects dist",
+        "build": "rm -r -f dist && parcel build src/html/index.html",
         "dev": "parcel src/html/index.html"
     },
     "devDependencies": {
