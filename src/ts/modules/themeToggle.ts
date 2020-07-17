@@ -5,7 +5,7 @@
  */
 enum Theme {
     Dark = 'dark',
-    Light = 'light'
+    Light = 'light',
 }
 
 /**
@@ -13,7 +13,7 @@ enum Theme {
  *
  * Store the value in localStorage for recall on return visits
  */
-export function themeToggle() {
+export function themeToggle(): void {
     const theme = localStorage.getItem('theme');
     const root = document.querySelector(':root') as HTMLElement | null;
     const toggleDiv = document.querySelector(
