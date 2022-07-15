@@ -8,15 +8,15 @@
 # PER-DEPLOY.
 
 [[headers]]
-  # Define which paths this specific [[headers]] block will cover.
-  for = "/*"
+# Define which paths this specific [[headers]] block will cover.
+for = "/*"
 
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+[headers.values]
+X-Frame-Options = "DENY"
+X-XSS-Protection = "1; mode=block"
 
-    # CSP
-    Content-Security-Policy = '''
+# CSP
+Content-Security-Policy = '''
     default-src 'self';
     child-src 'none';
     style-src 'self' https://fonts.googleapis.com;
@@ -24,21 +24,21 @@
     script-src 'self' data: 'sha256-hFMvj/4LoRYSiM4HpXpdfEm0mJh1gfl6Hkbqm9LME3o=' https://www.google-analytics.com;
     img-src 'self' https://www.google-analytics.com'''
 
-    # Hsts
-    Strict-Transport-Security = '''
+# Hsts
+Strict-Transport-Security = '''
     max-age=63072000;
     includeSubDomains;
     preload'''
 
 # Caching headers
 [[headers]]
-  for = "*.js"
+for = "*.js"
 
-  [headers.values]
-    Cache-Control = "public, max-age=15811200"
+[headers.values]
+Cache-Control = "public, max-age=15811200"
 
 [[headers]]
-  for = "*.css"
+for = "*.css"
 
-  [headers.values]
-    Cache-Control = "public, max-age=15811200"
+[headers.values]
+Cache-Control = "public, max-age=15811200"
