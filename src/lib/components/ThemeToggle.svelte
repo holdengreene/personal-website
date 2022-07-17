@@ -39,7 +39,7 @@
 		top: variables.rem(20px);
 		right: variables.rem(50px);
 		opacity: 0;
-		animation: 1s fadeUp 0.75s forwards ease;
+		animation: 1s fadeUp forwards ease;
 
 		@media (prefers-reduced-motion: reduce) {
 			animation: none;

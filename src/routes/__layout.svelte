@@ -1,42 +1,11 @@
 <script lang="ts">
-	import { darkMode } from '$lib/store';
+	import ThemeWrapper from '$lib/components/ThemeWrapper.svelte';
 </script>
 
-<div class="theme-wrapper" data-theme={$darkMode ? 'dark' : 'light'}>
+<ThemeWrapper>
 	<slot />
-</div>
+</ThemeWrapper>
 
 <style lang="scss" global>
-	@use 'sass:color';
-	@use '../scss/variables';
 	@use '../../node_modules/normalize.css/normalize';
-
-	// Still use sass variables here to ensure consistency
-	.theme-wrapper {
-		--font-color: #{variables.$font-color};
-		--primary-background: #{variables.$primary-background};
-		--splash-background: #{variables.$splash-background};
-		--green-hover: #{variables.$green-hover};
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.theme-wrapper:not([data-theme='light']) {
-			--font-color: #{variables.$dm-font-color};
-			--primary-background: #{variables.$dm-primary-background};
-			--splash-background: #{variables.$dm-splash-background};
-			--green-hover: #{variables.$dm-green-hover};
-		}
-	}
-
-	.theme-wrapper[data-theme='dark'] {
-		--font-color: #{variables.$dm-font-color};
-		--primary-background: #{variables.$dm-primary-background};
-		--splash-background: #{variables.$dm-splash-background};
-		--green-hover: #{variables.$dm-green-hover};
-	}
-
-	.theme-wrapper {
-		font-family: variables.$body-font;
-		color: var(--font-color);
-	}
 </style>
