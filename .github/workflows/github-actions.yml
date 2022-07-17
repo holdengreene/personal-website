@@ -5,7 +5,7 @@ on:
         branches:
             - main
 jobs:
-    build:
+    publish:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -24,27 +24,7 @@ jobs:
                   pnpm install
                   npm run build
 
-            - name: Build site
-              run: npm run build
-
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v3
-              with:
-                  name: build
-                  path: build
-
-    publish:
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Download Website build
-              uses: actions/download-artifact@v3
-              with:
-                  name: build
-
-            - name: Publish
+            - name: Publish to Netlify
               uses: nwtgck/actions-netlify@v1.2
               with:
                   publish-dir: './build'
