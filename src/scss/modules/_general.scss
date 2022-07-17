@@ -1,6 +1,0 @@
-@use "./variables";
-
-body {
-    font-family: variables.$body-font;
-    @include variables.css-variable('color', 'font-color');
-}
