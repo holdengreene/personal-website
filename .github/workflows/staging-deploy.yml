@@ -37,3 +37,10 @@ jobs:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
               timeout-minutes: 1
+
+            - name: 'deployment success'
+              if: success()
+              uses: 'deliverybot/deployment-status@v1'
+              with:
+                state: 'success'
+                token: '${{ secrets.GITHUB_TOKEN  }}'
