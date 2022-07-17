@@ -1,7 +1,6 @@
 name: Publish on Netlify
 on:
     pull_request:
-        types: [opened, synchronize, reopened, closed]
         branches:
             - main
 jobs:
@@ -37,25 +36,3 @@ jobs:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
               timeout-minutes: 1
-# jobs:
-#     test:
-#         timeout-minutes: 60
-#         runs-on: ubuntu-latest
-#         steps:
-#             - uses: actions/checkout@v2
-#             - uses: pnpm/action-setup@v2.2.2
-#               with:
-#                   version: '7'
-#             - uses: actions/setup-node@v2
-#               with:
-#                 node-version: '16.x'
-#                 cache: 'pnpm'
-#             - name: Install dependencies
-#               run: pnpm ci
-#             - name: Install Playwright
-#               run: npx playwright install --with-deps
-#             - name: Run Playwright tests
-#               run: npm run test
-#               env:
-#                   # This might depend on your test-runner/language binding
-#                   PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
