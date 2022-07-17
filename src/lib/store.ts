@@ -4,7 +4,7 @@ import { writable } from 'svelte/store';
 let isDarkMode = true;
 
 if (browser) {
-	if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+	if (matchMedia('(prefers-color-scheme: light)').matches) {
 		isDarkMode = false;
 	}
 
