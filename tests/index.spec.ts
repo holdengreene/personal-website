@@ -2,7 +2,6 @@ import { expect, test } from '@playwright/test';
 
 test.describe('testing index page', () => {
 	test.beforeEach(async ({ page }) => {
-		await page.emulateMedia({ colorScheme: 'dark' });
 		await page.goto('/');
 	});
 
@@ -11,18 +10,12 @@ test.describe('testing index page', () => {
 	});
 
 	test('theme toggle has been loaded and checked', async ({ page }) => {
-		const themeToggle = page.locator('#theme-toggle');
-		await expect(themeToggle).toBeVisible();
-		await expect(themeToggle).toBeChecked();
+		await expect(page.locator('#theme-toggle')).toBeVisible();
 	});
 
 	test('theme toggle changes theme and save it to localStorage', async ({ page }) => {
 		const themeWrapper = page.locator('.theme-wrapper');
 		const themeToggle = page.locator('.theme-toggle');
-
-		await page.pause();
-
-		await expect(themeWrapper).toHaveAttribute('data-theme', 'dark');
 
 		// get initial theme value
 		const theme = await themeWrapper.getAttribute('data-theme');
@@ -36,7 +29,49 @@ test.describe('testing index page', () => {
 		).toBeDefined();
 
 		expect((await themeWrapper.getAttribute('data-theme')) !== theme).toBeTruthy();
-
-		await page.pause();
 	});
 });
+
+test.describe('testing dark mode', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'dark' });
+		await page.goto('/');
+	});
+
+	test('theme toggle is checked', async ({ page }) => {
+		await expect(page.locator('#theme-toggle')).toBeChecked();
+	});
+
+	test('theme defaults to dark mode', async ({ page }) => {
+		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'dark');
+	});
+
+	test('theme toggle changes to light mode', async ({ page }) => {
+		await page.locator('.theme-toggle').click();
+
+		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'light');
+		await expect(page.locator('#theme-toggle')).not.toBeChecked();
+	});
+});
+
+test.describe('testing light mode', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.emulateMedia({ colorScheme: 'light' });
+		await page.goto('/');
+	});
+
+	test('theme toggle is not checked', async ({page}) => {
+		await expect(page.locator('#theme-toggle')).not.toBeChecked();
+	})
+
+	test('theme defaults to light mode', async ({ page }) => {
+		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'light');
+	});
+
+	test('theme toggle changes to dark mode', async ({ page }) => {
+		await page.locator('.theme-toggle').click();
+
+		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'dark');
+		await expect(page.locator('#theme-toggle')).toBeChecked();
+	});
+})
