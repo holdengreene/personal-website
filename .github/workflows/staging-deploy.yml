@@ -37,12 +37,3 @@ jobs:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
               timeout-minutes: 1
-
-            # - name: Install Playwright
-            #   run: npx playwright install --with-deps
-
-            # - name: Run Playwright tests
-            #   run: npm run test
-
-            #   env:
-            #       PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
