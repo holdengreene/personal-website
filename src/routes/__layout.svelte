@@ -7,5 +7,5 @@
 </ThemeWrapper>
 
 <style lang="scss" global>
-	@use '../../node_modules/normalize.css/normalize';
+	@use 'normalize.css/normalize';
 </style>
