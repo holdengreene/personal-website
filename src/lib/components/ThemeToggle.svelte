@@ -30,8 +30,8 @@
 </div>
 
 <style lang="scss">
-	@use '../../lib/scss/variables';
-	@use '../../lib/scss/movement';
+	@use '../../scss/variables';
+	@use '../../scss/movement';
 
 	.theme-toggle {
 		display: block;

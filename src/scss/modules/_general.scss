@@ -1,6 +1,0 @@
-@use "./variables";
-
-.theme-wrapper {
-    font-family: variables.$body-font;
-    @include variables.css-variable('color', 'font-color');
-}
