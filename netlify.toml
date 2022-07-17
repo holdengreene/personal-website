@@ -5,5 +5,5 @@ NPM_FLAGS = "--version" # prevent Netlify npm install
 # Settings in the [build] context are global and are applied to all contexts
 # unless otherwise overridden by more specific contexts.
 [build]
-# command = "npx pnpm i --store=node_modules/.pnpm-store --frozen-lockfile && npm run build"
+command = "npx pnpm i --store=node_modules/.pnpm-store --frozen-lockfile && npm run build"
 publish = "build"
