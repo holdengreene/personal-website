@@ -40,6 +40,8 @@ jobs:
             - name: Install Playwright
               run: npx playwright install --with-deps
 
+            - run: echo ${{ github.event.deployment_status.target_url }}
+
             - name: Run Playwright tests
               run: npm run test
               env:
