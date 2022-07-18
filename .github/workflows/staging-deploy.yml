@@ -29,6 +29,7 @@ jobs:
               with:
                   publish-dir: './build'
                   github-token: ${{ secrets.GITHUB_TOKEN }}
+                  github-deployment-environment: staging
                   github-deployment-description: 'Deployed to Staging'
                   netlify-config-path: './netlify.toml'
                   deploy-message: ${{ github.event.pull_request.title }}
