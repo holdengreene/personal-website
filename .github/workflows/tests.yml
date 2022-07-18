@@ -25,10 +25,8 @@ jobs:
 
             - name: Run Playwright tests
               run: npm run test
-              # env:
-              #     PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
-
-            - run: echo ${{ toJson(github.event.deployment_status) }}
+              env:
+                  PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
 
             - uses: actions/upload-artifact@v3
               if: always()
