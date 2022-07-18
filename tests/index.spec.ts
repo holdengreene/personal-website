@@ -7,6 +7,7 @@ test.describe('testing index page', () => {
 
 	test('index page has expected h1', async ({ page, baseURL }) => {
 		console.log(baseURL);
+		console.log(process.env.PLAYWRIGHT_TEST_BASE_URL);
 
 		expect(await page.textContent('h1')).toBe('Holden Greene');
 	});

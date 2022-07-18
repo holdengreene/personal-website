@@ -33,5 +33,12 @@ jobs:
                   path: playwright-report/
                   retention-days: 30
 
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: playwright-snapshots
+                  path: tests/*-snapshots/
+                  retention-days: 30
+
               env:
                   PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.target_url }}
