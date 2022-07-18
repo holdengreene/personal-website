@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
 	workers: process.env.CI ? 1 : undefined,
-	reporter: 'html',
+	reporter: [['html', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */

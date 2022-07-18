@@ -5,8 +5,14 @@ test.describe('testing index page', () => {
 		await page.goto('/');
 	});
 
-	test('index page has expected h1', async ({ page }) => {
+	test('index page has expected h1', async ({ page, baseURL }) => {
+		console.log(baseURL);
+
 		expect(await page.textContent('h1')).toBe('Holden Greene');
+	});
+
+	test('index page has no visual regressions', async ({ page }) => {
+		await expect(page).toHaveScreenshot();
 	});
 
 	test('theme toggle has been loaded and checked', async ({ page }) => {
@@ -60,9 +66,9 @@ test.describe('testing light mode', () => {
 		await page.goto('/');
 	});
 
-	test('theme toggle is not checked', async ({page}) => {
+	test('theme toggle is not checked', async ({ page }) => {
 		await expect(page.locator('#theme-toggle')).not.toBeChecked();
-	})
+	});
 
 	test('theme defaults to light mode', async ({ page }) => {
 		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'light');
@@ -74,4 +80,4 @@ test.describe('testing light mode', () => {
 		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'dark');
 		await expect(page.locator('#theme-toggle')).toBeChecked();
 	});
-})
+});
