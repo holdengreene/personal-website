@@ -1,12 +1,14 @@
 import { expect, test } from '@playwright/test';
 
+console.log(process.env.PLAYWRIGHT_BASE_URL);
+
 test.describe('testing index page', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
 	});
 
-	test('index page has expected h1', async ({ page, baseURL }) => {
-		console.log(process.env.PLAYWRIGHT_TEST_BASE_URL);
+	test('index page has expected h1', async ({ page }) => {
+		console.log(process.env.PLAYWRIGHT_BASE_URL);
 
 		expect(await page.textContent('h1')).toBe('Holden Greene');
 	});
