@@ -36,3 +36,25 @@ jobs:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
               timeout-minutes: 1
+
+            - name: Install Playwright
+              run: npx playwright install --with-deps
+
+            - name: Run Playwright tests
+              run: npm run test
+              env:
+                  PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
+
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 30
+
+            - uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                  name: playwright-snapshots
+                  path: tests/*-snapshots/
+                  retention-days: 30
