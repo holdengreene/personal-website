@@ -11,9 +11,3 @@ Content-Security-Policy: img-src 'self' https://www.google-analytics.com
 Strict-Transport-Security: max-age:63072000;
 Strict-Transport-Security: includeSubDomains;
 Strict-Transport-Security: preload
-
-/*.js
-Cache-Control: "public, max-age:15811200"
-
-/*.css
-Cache-Control: "public, max-age=15811200"
