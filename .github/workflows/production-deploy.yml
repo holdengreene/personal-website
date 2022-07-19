@@ -1,7 +1,6 @@
-name: Deploy to Netlify Staging
+name: Deploy to Netlify Production
 on:
-    pull_request:
-        types: [opened, synchronize]
+    push:
         branches:
             - main
 jobs:
@@ -30,10 +29,12 @@ jobs:
               with:
                   publish-dir: ./build
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  github-deployment-environment: staging
-                  github-deployment-description: Deployed to Staging
+                  github-deployment-environment: production
+                  github-deployment-description: Deployed to Production
                   netlify-config-path: ./netlify.toml
                   deploy-message: ${{ github.event.pull_request.title }}
+                  production-branch: main
+                  production-deploy: true
               env:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
