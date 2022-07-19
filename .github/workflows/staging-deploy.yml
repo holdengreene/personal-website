@@ -40,21 +40,7 @@ jobs:
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
               timeout-minutes: 1
 
-            # Install playwright's binary under custom directory to cache
-            - name: Set Playwright path
-              run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
-
-            - name: Cache Playwright's binary
-              id: playwright-cache
-              uses: actions/cache@v3
-              with:
-                  # Playwright removes unused browsers automatically
-                  # So does not need to add playwright version to key
-                  key: ${{ runner.os }}-playwright-bin-v1
-                  path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
-
             - name: Install Playwright
-              if: steps.playwright-cache.outputs.cache-hit != 'true'
               run: pnpm playwright install --with-deps
 
             - name: Run Playwright tests
