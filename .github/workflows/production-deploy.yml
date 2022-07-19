@@ -21,7 +21,7 @@ jobs:
             - name: Install dependencies and build
               run: |
                   pnpm install
-                  npm run build
+                  pnpm run build
 
             - name: Publish to Netlify
               uses: nwtgck/actions-netlify@v1.2
@@ -45,6 +45,7 @@ jobs:
               run: echo "PLAYWRIGHT_BROWSERS_PATH=$HOME/.cache/playwright-bin" >> $GITHUB_ENV
 
             - name: Cache Playwright's binary
+              id: playwright-cache
               uses: actions/cache@v3
               with:
                   # Playwright removes unused browsers automatically
@@ -53,10 +54,11 @@ jobs:
                   path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
 
             - name: Install Playwright
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
               run: npx playwright install --with-deps
 
             - name: Run Playwright tests
-              run: npm run test
+              run: pnpm run test
               env:
                   PLAYWRIGHT_BASE_URL: ${{ steps.netlify.outputs.deploy-url }}
 
