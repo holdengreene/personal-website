@@ -9,16 +9,20 @@ test.describe('testing index page', () => {
 		expect(await page.textContent('h1')).toBe('Holden Greene');
 	});
 
+	test('index page has no visual regressions', async ({ page }) => {
+		await expect(page).toHaveScreenshot();
+	});
+
 	test('theme toggle has been loaded and checked', async ({ page }) => {
 		await expect(page.locator('#theme-toggle')).toBeVisible();
 	});
 
-	test('theme toggle changes theme and save it to localStorage', async ({ page }) => {
-		const themeWrapper = page.locator('.theme-wrapper');
+	test('theme toggle changes theme and saves it to localStorage', async ({ page }) => {
+		// const themeWrapper = page.locator('.theme-wrapper');
 		const themeToggle = page.locator('.theme-toggle');
 
 		// get initial theme value
-		const theme = await themeWrapper.getAttribute('data-theme');
+		// const theme = await themeWrapper.getAttribute('data-theme');
 
 		await themeToggle.click();
 
@@ -27,8 +31,6 @@ test.describe('testing index page', () => {
 		expect(
 			storageState[0].localStorage.find((value) => value.name === 'darkMode')
 		).toBeDefined();
-
-		expect((await themeWrapper.getAttribute('data-theme')) !== theme).toBeTruthy();
 	});
 });
 
@@ -60,9 +62,9 @@ test.describe('testing light mode', () => {
 		await page.goto('/');
 	});
 
-	test('theme toggle is not checked', async ({page}) => {
+	test('theme toggle is not checked', async ({ page }) => {
 		await expect(page.locator('#theme-toggle')).not.toBeChecked();
-	})
+	});
 
 	test('theme defaults to light mode', async ({ page }) => {
 		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'light');
@@ -74,4 +76,4 @@ test.describe('testing light mode', () => {
 		await expect(page.locator('.theme-wrapper')).toHaveAttribute('data-theme', 'dark');
 		await expect(page.locator('#theme-toggle')).toBeChecked();
 	});
-})
+});
