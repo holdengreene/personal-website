@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+console.log(process.env.CI);
+
 test.describe('testing index page', () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
