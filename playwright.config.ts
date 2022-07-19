@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
 	forbidOnly: !!process.env.CI,
 	retries: process.env.CI ? 2 : 0,
 	workers: process.env.CI ? 1 : undefined,
-	reporter: [['html', { open: 'never' }]],
+	reporter: [['dot', { open: 'never' }]],
 	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 	use: {
 		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
@@ -29,7 +29,7 @@ const config: PlaywrightTestConfig = {
 		baseURL: process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:4173',
 
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-		trace: 'on-first-retry'
+		trace: 'retain-on-failure'
 	},
 	projects: [
 		{ name: 'chromium', use: { ...devices['Desktop Chrome'] } },

@@ -1,10 +1,7 @@
 import { expect, test } from '@playwright/test';
 
-console.log(process.env.PLAYWRIGHT_BASE_URL);
-
 test.describe('testing index page', () => {
-	test.beforeEach(async ({ page, baseURL }) => {
-		console.log(baseURL);
+	test.beforeEach(async ({ page }) => {
 		await page.goto('/');
 	});
 
