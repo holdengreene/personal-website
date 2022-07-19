@@ -1,13 +1,5 @@
 /*
 X-Frame-Options: "DENY"
 X-XSS-Protection: "1; mode=block"
-Content-Security-Policy: default-src 'self';
-Content-Security-Policy: child-src 'none';
-Content-Security-Policy: style-src 'self' https://fonts.googleapis.com;
-Content-Security-Policy: font-src 'self' https://fonts.gstatic.com;
-Content-Security-Policy: script-src 'self' data: 'sha256-hFMvj/4LoRYSiM4HpXpdfEm0mJh1gfl6Hkbqm9LME3o:' https://www.google-analytics.com;
-Content-Security-Policy: img-src 'self' https://www.google-analytics.com 
-    
-Strict-Transport-Security: max-age:63072000;
-Strict-Transport-Security: includeSubDomains;
-Strict-Transport-Security: preload
+Content-Security-Policy: default-src 'self'; child-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' data: 'sha256-hFMvj/4LoRYSiM4HpXpdfEm0mJh1gfl6Hkbqm9LME3o:' https://www.google-analytics.com; img-src 'self' https://www.google-analytics.com 
+Strict-Transport-Security: max-age:63072000; includeSubDomains; preload
