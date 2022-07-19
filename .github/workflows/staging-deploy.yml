@@ -34,7 +34,7 @@ jobs:
                   github-deployment-description: Deployed to Staging
                   netlify-config-path: ./netlify.toml
                   deploy-message: ${{ github.event.pull_request.title }}
-                  production-deploy: true
+                  production-deploy: false
               env:
                   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
                   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -54,8 +54,8 @@ jobs:
                   path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
 
             - name: Install Playwright
-              if: steps.playwright-cache.outputs.cache-hit != 'true'
-              run: npx playwright install --with-deps
+              # if: steps.playwright-cache.outputs.cache-hit != 'true'
+              run: pnpm playwright install --with-deps
 
             - name: Run Playwright tests
               run: pnpm run test
