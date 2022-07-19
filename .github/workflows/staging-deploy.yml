@@ -54,7 +54,7 @@ jobs:
                   path: ${{ env.PLAYWRIGHT_BROWSERS_PATH }}
 
             - name: Install Playwright
-              # if: steps.playwright-cache.outputs.cache-hit != 'true'
+              if: steps.playwright-cache.outputs.cache-hit != 'true'
               run: pnpm playwright install --with-deps
 
             - name: Run Playwright tests
