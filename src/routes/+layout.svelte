@@ -7,5 +7,5 @@
 </ThemeWrapper>
 
 <style lang="scss" global>
-	@use 'normalize.css/normalize';
+	@use 'modern-normalize/modern-normalize.css';
 </style>
