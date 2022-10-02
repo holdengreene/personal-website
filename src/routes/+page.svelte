@@ -32,10 +32,11 @@
 	@use 'sass:color';
 
 	.colored-background {
-		background-color: var(--splash-background);
-		min-height: 100vh;
 		display: flex;
 		justify-content: center;
+		background-color: var(--splash-background);
+		min-height: 100vh;
+		min-height: 100dvh;
 	}
 
 	.main-grid {
@@ -49,9 +50,8 @@
 	}
 
 	.main-grid__text {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		display: grid;
+		place-content: center;
 		height: 100%;
 	}
 
@@ -62,7 +62,7 @@
 			opacity: 0;
 			margin: 0;
 			font-weight: bold;
-			font-size: variables.rem(42px);
+			font-size: clamp(variables.rem(38px), 5vw, variables.rem(42px));
 			animation: 1s fadeUp 0.25s forwards ease;
 		}
 
@@ -110,10 +110,6 @@
 	@media (max-width: 1023px) {
 		.main-grid {
 			padding: variables.rem(15px);
-		}
-
-		.main-grid__titles h1 {
-			font-size: variables.rem(38px);
 		}
 	}
 </style>
