@@ -1,9 +1,9 @@
-import { devices } from '@playwright/test';
 import type { PlaywrightTestConfig } from '@playwright/test';
+import { devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'npm run build && npm run preview',
+		command: 'pnpm run build && pnpm run preview',
 		port: 4173,
 		reuseExistingServer: !process.env.CI
 	},
