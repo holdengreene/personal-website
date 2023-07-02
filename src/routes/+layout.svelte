@@ -1,11 +1,8 @@
 <script lang="ts">
 	import ThemeWrapper from '$lib/components/ThemeWrapper.svelte';
+	import 'modern-normalize/modern-normalize.css';
 </script>
 
 <ThemeWrapper>
 	<slot />
 </ThemeWrapper>
-
-<style lang="scss" global>
-	@use 'modern-normalize/modern-normalize.css';
-</style>
