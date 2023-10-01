@@ -21,9 +21,6 @@ test.describe('testing index page', () => {
 		// const themeWrapper = page.locator('.theme-wrapper');
 		const themeToggle = page.locator('.theme-toggle');
 
-		// get initial theme value
-		// const theme = await themeWrapper.getAttribute('data-theme');
-
 		await themeToggle.click();
 
 		const storageState = (await page.context().storageState()).origins;
