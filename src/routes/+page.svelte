@@ -89,7 +89,9 @@
 		color: var(--font-color);
 		font-size: variables.rem(20px);
 		text-decoration: none;
-		transition: border-color 0.25s ease, background-color 0.25s ease;
+		transition:
+			border-color 0.25s ease,
+			background-color 0.25s ease;
 
 		&:hover {
 			border-color: color.scale(variables.$splash-background, $lightness: -20%);
