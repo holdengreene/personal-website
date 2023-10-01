@@ -1,5 +1,6 @@
 name: Deploy to Netlify Staging
 on:
+    workflow_dispatch:
     pull_request:
         types: [opened, synchronize]
         branches:
