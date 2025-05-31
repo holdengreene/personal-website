@@ -57,9 +57,6 @@ importers:
       prettier-plugin-svelte:
         specifier: ^3.4.0
         version: 3.4.0(prettier@3.5.3)(svelte@5.33.10)
-      sass:
-        specifier: ^1.89.1
-        version: 1.89.1
       svelte:
         specifier: ^5.33.10
         version: 5.33.10
@@ -2186,7 +2183,8 @@ snapshots:
 
   ignore@7.0.5: {}
 
-  immutable@5.1.2: {}
+  immutable@5.1.2:
+    optional: true
 
   import-fresh@3.3.1:
     dependencies:
@@ -2458,6 +2456,7 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.1
+    optional: true
 
   semver@7.7.2: {}
 

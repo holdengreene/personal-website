@@ -27,9 +27,7 @@
 </div>
 
 <style lang="scss">
-	@use '../scss/variables';
-	@use '../scss/movement';
-	@use 'sass:color';
+	@import '$lib/css/_movement.css';
 
 	.colored-background {
 		display: flex;
@@ -44,9 +42,9 @@
 		width: 100%;
 		background-color: var(--primary-background);
 		text-align: center;
-		margin: variables.rem(20px);
-		border-radius: variables.rem(3px);
-		box-shadow: variables.$slight-shadow;
+		margin: 1.25rem;
+		border-radius: 0.1875rem;
+		box-shadow: var(--slight-shadow);
 	}
 
 	.main-grid__text {
@@ -56,13 +54,13 @@
 	}
 
 	.main-grid__titles {
-		font-family: variables.$header-font;
+		font-family: var(--header-font);
 
 		h1 {
 			opacity: 0;
 			margin: 0;
 			font-weight: bold;
-			font-size: clamp(variables.rem(38px), 5vw, variables.rem(42px));
+			font-size: clamp(2.375rem, 5vw, 2.625rem);
 			animation: 1s fadeUp 0.25s forwards ease;
 		}
 
@@ -83,19 +81,19 @@
 	.main-grid__link {
 		display: block;
 		background-color: transparent;
-		border: variables.rem(3px) solid variables.$splash-background;
-		padding: variables.rem(10px);
-		border-radius: variables.rem(3px);
+		border: 0.1875rem solid var(--primary-button-color);
+		padding: 0.625rem;
+		border-radius: 0.1875rem;
 		color: var(--font-color);
-		font-size: variables.rem(20px);
+		font-size: 1.25rem;
 		text-decoration: none;
 		transition:
 			border-color 0.25s ease,
 			background-color 0.25s ease;
 
 		&:hover {
-			border-color: color.scale(variables.$splash-background, $lightness: -20%);
-			background-color: var(--green-hover);
+			border-color: hsl(from var(--primary-button-color) h s calc(l - 20));
+			background-color: var(--primary-hover);
 		}
 	}
 
@@ -111,7 +109,7 @@
 
 	@media (max-width: 1023px) {
 		.main-grid {
-			padding: variables.rem(15px);
+			padding: 1rem;
 		}
 	}
 </style>

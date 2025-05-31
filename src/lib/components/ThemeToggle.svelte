@@ -30,14 +30,13 @@
 </div>
 
 <style lang="scss">
-	@use '../../scss/variables';
-	@use '../../scss/movement';
+	@import '$lib/css/_movement.css';
 
 	.theme-toggle {
 		display: block;
 		position: absolute;
-		top: variables.rem(20px);
-		right: variables.rem(50px);
+		top: 1.25rem;
+		right: 3.125rem;
 		opacity: 0;
 		animation: 1s fadeUp forwards ease;
 
@@ -48,13 +47,13 @@
 	}
 
 	.moon-svg {
-		width: variables.rem(30px);
+		width: 1.875rem;
 		cursor: pointer;
 	}
 
 	.moon-svg__path {
 		fill: #fff;
-		stroke: variables.$font-color;
+		stroke: var(--font-color);
 		transition:
 			fill 0.3s ease,
 			stroke 0.3s ease;
@@ -65,15 +64,14 @@
 		position: absolute;
 		top: auto;
 		overflow: hidden;
-		clip: rect(1px 1px 1px 1px);
 		clip: rect(1px, 1px, 1px, 1px);
-		width: variables.rem(1px);
-		height: variables.rem(1px);
+		width: 0.0625rem;
+		height: 0.0625rem;
 		white-space: nowrap;
 	}
 
 	.theme-toggle__checkbox:checked + .theme-toggle__label .moon-svg__path {
-		fill: variables.$splash-background;
+		fill: var(--primary-button-color);
 		stroke: none;
 	}
 </style>
