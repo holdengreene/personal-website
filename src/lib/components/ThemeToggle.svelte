@@ -1,33 +1,32 @@
 <script lang="ts">
-	import { darkMode } from '$lib/store';
+	import { getThemeContext } from '$lib/themeContext.svelte';
+	import type { ThemeValueType } from '$lib/types';
+	import { themeStorageKey, ThemeValue } from '$lib/types/constants';
 
-	function toggleDarkMode() {
-		if ($darkMode === false) {
-			return ($darkMode = false);
+	const themeConfig = getThemeContext();
+	let theme = $derived<ThemeValueType>(themeConfig.selectedTheme ?? themeConfig.detectedTheme);
+
+	function toggleTheme() {
+		if (theme === ThemeValue.LIGHT || !theme) {
+			themeConfig.selectedTheme = ThemeValue.DARK;
+		} else {
+			themeConfig.selectedTheme = ThemeValue.LIGHT;
 		}
 
-		return ($darkMode = true);
+		localStorage.setItem(themeStorageKey, themeConfig.selectedTheme);
 	}
 </script>
 
-<div class="theme-toggle">
-	<input
-		type="checkbox"
-		id="theme-toggle"
-		class="theme-toggle__checkbox"
-		aria-label="Turn dark theme on and off"
-		bind:checked={$darkMode}
-		onchange={toggleDarkMode}
-	/>
-	<label class="theme-toggle__label" for="theme-toggle">
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="moon-svg">
-			<path
-				class="moon-svg__path"
-				d="M13.719 1.8A8.759 8.759 0 111.8 13.719c3.335 1.867 7.633 1.387 10.469-1.449s3.318-7.134 1.45-10.47z"
-			/>
-		</svg>
-	</label>
-</div>
+<button type="button" class="theme-toggle" aria-pressed={theme === 'dark'} onclick={toggleTheme}>
+	<span class="sr-only">Toggle Site Theme</span>
+
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="moon-svg" aria-hidden="true">
+		<path
+			class="moon-svg__path"
+			d="M13.719 1.8A8.759 8.759 0 111.8 13.719c3.335 1.867 7.633 1.387 10.469-1.449s3.318-7.134 1.45-10.47z"
+		/>
+	</svg>
+</button>
 
 <style>
 	@import '$lib/css/_movement.css';
@@ -35,11 +34,14 @@
 	.theme-toggle {
 		display: block;
 		position: absolute;
-		top: 1.25rem;
+		top: 2rem;
 		right: 3.125rem;
+		background-color: transparent;
+		border: none;
+		padding: 0;
+		z-index: 2;
 		opacity: 0;
 		animation: 1s fadeUp forwards ease;
-
 		@media (prefers-reduced-motion: reduce) {
 			animation: none;
 			opacity: 1;
@@ -52,25 +54,20 @@
 	}
 
 	.moon-svg__path {
-		fill: #fff;
-		stroke: var(--font-color);
+		fill: light-dark(#ffffff, var(--primary-button-color));
+		stroke: light-dark(var(--font-color), var(--primary-button-color));
 		transition:
 			fill 0.3s ease,
 			stroke 0.3s ease;
 	}
 
-	.theme-toggle__checkbox {
+	.sr-only {
 		position: absolute;
 		top: auto;
 		overflow: hidden;
 		clip: rect(1px, 1px, 1px, 1px);
-		width: 0.0625rem;
-		height: 0.0625rem;
+		width: 1px;
+		height: 1px;
 		white-space: nowrap;
-	}
-
-	.theme-toggle__checkbox:checked + .theme-toggle__label .moon-svg__path {
-		fill: var(--primary-button-color);
-		stroke: none;
 	}
 </style>

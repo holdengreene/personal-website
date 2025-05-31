@@ -1,14 +1,46 @@
 <script lang="ts">
-	import { darkMode } from '$lib/store';
 	import 'modern-normalize/modern-normalize.css';
+
+	import { browser } from '$app/environment';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
+	import { setThemeContext } from '$lib/themeContext.svelte';
+	import type { ThemeConfig } from '$lib/types';
+	import { ThemeValue } from '$lib/types/constants';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
 
-	let { children }: Props = $props();
+	const { children }: Props = $props();
+
+	const themeConfig = $state<ThemeConfig>({ detectedTheme: undefined, selectedTheme: undefined });
+
+	if (browser) {
+		if (localStorage.getItem('theme')) {
+			const config = localStorage.getItem('theme');
+
+			if (
+				config === ThemeValue.LIGHT ||
+				config === ThemeValue.DARK ||
+				typeof config === 'undefined'
+			) {
+				themeConfig.selectedTheme = config;
+			}
+		} else {
+			if (matchMedia('(prefers-color-scheme: dark)').matches) {
+				themeConfig.detectedTheme = ThemeValue.DARK;
+			} else {
+				themeConfig.detectedTheme = ThemeValue.LIGHT;
+			}
+		}
+	}
+
+	setThemeContext(themeConfig);
 </script>
 
-<div class="app" data-theme={$darkMode ? 'dark' : 'light'}>
+<div class="app" data-theme={themeConfig.selectedTheme}>
+	<ThemeToggle />
+
 	{@render children?.()}
 </div>
 

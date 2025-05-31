@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 </script>
 
 <svelte:head>
@@ -8,8 +7,6 @@
 
 <div class="colored-background">
 	<div class="main-grid">
-		<ThemeToggle />
-
 		<main class="main-grid__text">
 			<div class="main-grid__titles">
 				<h1>Holden Greene</h1>
