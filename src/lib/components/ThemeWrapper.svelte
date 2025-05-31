@@ -1,9 +1,14 @@
 <script lang="ts">
 	import { darkMode } from '$lib/store';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <div class="theme-wrapper" data-theme={$darkMode ? 'dark' : 'light'}>
-	<slot />
+	{@render children?.()}
 </div>
 
 <style lang="scss">

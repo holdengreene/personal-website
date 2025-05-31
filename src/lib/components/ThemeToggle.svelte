@@ -17,7 +17,7 @@
 		class="theme-toggle__checkbox"
 		aria-label="Turn dark theme on and off"
 		bind:checked={$darkMode}
-		on:change={toggleDarkMode}
+		onchange={toggleDarkMode}
 	/>
 	<label class="theme-toggle__label" for="theme-toggle">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="moon-svg">
@@ -55,7 +55,9 @@
 	.moon-svg__path {
 		fill: #fff;
 		stroke: variables.$font-color;
-		transition: fill 0.3s ease, stroke 0.3s ease;
+		transition:
+			fill 0.3s ease,
+			stroke 0.3s ease;
 	}
 
 	// Hide the input, but not from screen readers
