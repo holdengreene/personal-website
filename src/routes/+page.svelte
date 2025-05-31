@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	@import '$lib/css/_movement.css';
 
 	.colored-background {
@@ -97,7 +97,6 @@
 		}
 	}
 
-	// Let's be considerate
 	@media (prefers-reduced-motion: reduce) {
 		.main-grid__titles h1,
 		.main-grid__titles h2,

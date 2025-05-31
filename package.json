@@ -45,7 +45,7 @@
 	},
 	"lint-staged": {
 		"*.{js,ts,cjs,svelte}": "eslint --cache --fix",
-		"*.{js,cjs,ts,scss,md,svelte}": "prettier --write"
+		"*.{js,cjs,ts,css,md,svelte}": "prettier --write"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

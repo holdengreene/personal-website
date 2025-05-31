@@ -29,7 +29,7 @@
 	</label>
 </div>
 
-<style lang="scss">
+<style>
 	@import '$lib/css/_movement.css';
 
 	.theme-toggle {
@@ -59,7 +59,6 @@
 			stroke 0.3s ease;
 	}
 
-	// Hide the input, but not from screen readers
 	.theme-toggle__checkbox {
 		position: absolute;
 		top: auto;
