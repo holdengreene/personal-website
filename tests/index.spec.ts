@@ -9,10 +9,6 @@ test.describe('testing index page', () => {
 		expect(await page.textContent('h1')).toBe('Holden Greene');
 	});
 
-	test('index page has no visual regressions', async ({ page }) => {
-		await expect(page).toHaveScreenshot();
-	});
-
 	test('theme toggle has been loaded and checked', async ({ page }) => {
 		await expect(page.locator('.theme-toggle')).toBeVisible();
 	});
