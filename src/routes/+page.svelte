@@ -24,14 +24,13 @@
 </div>
 
 <style>
-	@import '$lib/css/_movement.css';
-
 	.colored-background {
 		display: flex;
 		justify-content: center;
 		background-color: var(--splash-background);
 		min-height: 100vh;
 		min-height: 100dvh;
+		transition: 0.3s background ease;
 	}
 
 	.main-grid {
@@ -42,6 +41,7 @@
 		margin: 1.25rem;
 		border-radius: 0.1875rem;
 		box-shadow: var(--slight-shadow);
+		transition: 0.3s background ease;
 	}
 
 	.main-grid__text {
@@ -54,25 +54,28 @@
 		font-family: var(--header-font);
 
 		h1 {
-			opacity: 0;
 			margin: 0;
 			font-weight: bold;
 			font-size: clamp(2.375rem, 5vw, 2.625rem);
-			animation: 1s fadeUp 0.25s forwards ease;
+			transition:
+				opacity 1s 0.25s ease,
+				transform 1s 0.25s ease;
 		}
 
 		h2 {
-			opacity: 0;
 			font-weight: normal;
-			animation: 1s fadeUp 0.5s forwards ease;
+			transition:
+				opacity 1s 0.5s ease,
+				transform 1s 0.5s ease;
 		}
 	}
 
 	.main-grid__link-section {
 		display: flex;
 		justify-content: center;
-		opacity: 0;
-		animation: 1s fadeUp 0.75s forwards ease;
+		transition:
+			opacity 1s 0.75s ease,
+			transform 1s 0.75s ease;
 	}
 
 	.main-grid__link {
@@ -94,12 +97,19 @@
 		}
 	}
 
+	@starting-style {
+		.main-grid__titles :is(h1, h2),
+		.main-grid__link-section {
+			opacity: 0;
+			transform: translateY(25%);
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
 		.main-grid__titles h1,
 		.main-grid__titles h2,
 		.main-grid__link-section {
-			opacity: 1;
-			animation: none;
+			transition: none;
 		}
 	}
 

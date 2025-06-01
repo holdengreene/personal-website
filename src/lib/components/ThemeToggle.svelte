@@ -30,8 +30,6 @@
 </button>
 
 <style>
-	@import '$lib/css/_movement.css';
-
 	.theme-toggle {
 		display: block;
 		position: absolute;
@@ -41,12 +39,17 @@
 		border: none;
 		padding: 0;
 		z-index: 2;
-		opacity: 0;
-		animation: 1s fadeUp forwards ease;
+		transition:
+			opacity 1s ease,
+			transform 1s ease;
+
+		@starting-style {
+			opacity: 0;
+			transform: translateY(25%);
+		}
 
 		@media (prefers-reduced-motion: reduce) {
-			animation: none;
-			opacity: 1;
+			transition: none;
 		}
 	}
 
