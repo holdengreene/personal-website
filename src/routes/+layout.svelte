@@ -1,11 +1,9 @@
 <script lang="ts">
 	import 'modern-normalize/modern-normalize.css';
 
-	import { browser } from '$app/environment';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { setThemeContext } from '$lib/themeContext.svelte';
-	import type { ThemeConfig } from '$lib/types';
-	import { ThemeValue } from '$lib/types/constants';
+	import { Theme } from '$lib/Theme.svelte';
+	import { getThemeContext, setThemeContext } from '$lib/themeContext.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -13,29 +11,10 @@
 
 	const { children }: Props = $props();
 
-	const themeConfig = $state<ThemeConfig>({ detectedTheme: undefined, selectedTheme: undefined });
+	const theme = new Theme();
+	setThemeContext(theme);
 
-	if (browser) {
-		if (localStorage.getItem('theme')) {
-			const config = localStorage.getItem('theme');
-
-			if (
-				config === ThemeValue.LIGHT ||
-				config === ThemeValue.DARK ||
-				typeof config === 'undefined'
-			) {
-				themeConfig.selectedTheme = config;
-			}
-		} else {
-			if (matchMedia('(prefers-color-scheme: dark)').matches) {
-				themeConfig.detectedTheme = ThemeValue.DARK;
-			} else {
-				themeConfig.detectedTheme = ThemeValue.LIGHT;
-			}
-		}
-	}
-
-	setThemeContext(themeConfig);
+	const themeConfig = getThemeContext();
 </script>
 
 <div class="app" data-theme={themeConfig.selectedTheme}>

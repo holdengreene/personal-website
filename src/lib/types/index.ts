@@ -1,5 +1,9 @@
 import type { ThemeValue } from './constants';
 
-export type ThemeConfig = { detectedTheme: ThemeValueType; selectedTheme: ThemeValueType };
+export interface ThemeConfig {
+	detectedTheme: ThemeValueType;
+	selectedTheme: ThemeValueType;
+	derivedTheme: ThemeValueType;
+}
 
 export type ThemeValueType = (typeof ThemeValue)[keyof typeof ThemeValue];

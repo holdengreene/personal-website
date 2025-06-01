@@ -1,23 +1,24 @@
 <script lang="ts">
 	import { getThemeContext } from '$lib/themeContext.svelte';
-	import type { ThemeValueType } from '$lib/types';
-	import { themeStorageKey, ThemeValue } from '$lib/types/constants';
+	import { ThemeValue } from '$lib/types/constants';
 
 	const themeConfig = getThemeContext();
-	let theme = $derived<ThemeValueType>(themeConfig.selectedTheme ?? themeConfig.detectedTheme);
 
 	function toggleTheme() {
-		if (theme === ThemeValue.LIGHT || !theme) {
+		if (themeConfig.derivedTheme === ThemeValue.LIGHT || !themeConfig.derivedTheme) {
 			themeConfig.selectedTheme = ThemeValue.DARK;
 		} else {
 			themeConfig.selectedTheme = ThemeValue.LIGHT;
 		}
-
-		localStorage.setItem(themeStorageKey, themeConfig.selectedTheme);
 	}
 </script>
 
-<button type="button" class="theme-toggle" aria-pressed={theme === 'dark'} onclick={toggleTheme}>
+<button
+	type="button"
+	class="theme-toggle"
+	aria-pressed={themeConfig.derivedTheme === 'dark'}
+	onclick={toggleTheme}
+>
 	<span class="sr-only">Toggle Site Theme</span>
 
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="moon-svg" aria-hidden="true">
@@ -42,6 +43,7 @@
 		z-index: 2;
 		opacity: 0;
 		animation: 1s fadeUp forwards ease;
+
 		@media (prefers-reduced-motion: reduce) {
 			animation: none;
 			opacity: 1;

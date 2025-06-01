@@ -1,12 +1,12 @@
 import { getContext, setContext } from 'svelte';
-import type { ThemeConfig } from './types';
+import type { Theme } from './Theme.svelte';
 
 const key = Symbol('key');
 
-export function setThemeContext(theme: ThemeConfig) {
+export function setThemeContext(theme: Theme) {
 	setContext(key, theme);
 }
 
-export function getThemeContext(): ThemeConfig {
-	return getContext(key) as ThemeConfig;
+export function getThemeContext(): Theme {
+	return getContext(key) as Theme;
 }
